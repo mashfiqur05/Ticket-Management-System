@@ -18,9 +18,10 @@ public class Register extends JFrame implements ActionListener, MouseListener
     Color myColor1, myColor2;
     TicketSellerList seller;
     MovieFileReader movieFileReader;
-    
+    String userType;
 
-    public Register(TicketSellerList seller,MovieFileReader movieFileReader) {
+
+    public Register(TicketSellerList seller,MovieFileReader movieFileReader, String userType) {
         super("Register");
         
         this.setSize(800, 600);
@@ -158,7 +159,7 @@ public class Register extends JFrame implements ActionListener, MouseListener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             // Close the register screen and go back to login
-            Admin admin = new Admin(seller, movieFileReader);
+            Admin admin = new Admin(seller, movieFileReader, userType);
             admin.setVisible(true);
             this.setVisible(false);
         } else if (e.getSource() == registerButton) {
@@ -182,7 +183,7 @@ public class Register extends JFrame implements ActionListener, MouseListener
                 }
 
                 JOptionPane.showMessageDialog(this, "Congratulation! You've register a new user");
-                Admin admin = new Admin(seller, movieFileReader);
+                Admin admin = new Admin(seller, movieFileReader, userType);
                 admin.setVisible(true);
                 this.setVisible(false);
             }else{

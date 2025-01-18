@@ -22,7 +22,7 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
     TicketDetailsList ticketDetailsList;
     TicketSellerList seller;
     MovieFileReader movieFileReader;
-    String imagePath, movieName;
+    String imagePath, movieName, userType;
 
     int[][] unavailableSeats = 
     {
@@ -31,7 +31,7 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
         {3, 6}  /// 18:00
     };
 
-    public MovieTicketBooking(TicketSellerList seller, String imagePath, String movieName, TicketDetailsList ticketDetailsList,MovieFileReader movieFileReader) 
+    public MovieTicketBooking(TicketSellerList seller, String imagePath, String movieName, TicketDetailsList ticketDetailsList,MovieFileReader movieFileReader, String userType) 
     {
         super("Movie Ticket Booking");
         this.setSize(800, 600);
@@ -40,6 +40,7 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
         this.seller = seller;
         this.imagePath = imagePath;
         this.movieName = movieName;
+        this.userType = userType;
         this.ticketDetailsList = ticketDetailsList;
         this.movieFileReader = movieFileReader;
         this.movieFileReader = new MovieFileReader();
@@ -57,7 +58,9 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
         panel.setLayout(null);
         panel.setBackground(myColor1);
 
-        
+        System.out.print("Movie ticket booking : ");
+        System.out.println(seller);
+
         // Label
         nameLabel = new JLabel("Name: ");
         nameLabel.setBackground(myColor1);
@@ -242,16 +245,17 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
         if (ae.getSource() == backButton) 
         {
             if (seller != null) {
-                Home home = new Home(seller, movieFileReader);
+                Home home = new Home(seller, movieFileReader, userType);
                 home.setVisible(true);
             } else {
                 // Admin logic or default handling
                 JOptionPane.showMessageDialog(this, "Returning to admin dashboard.");
                 // Navigate to admin home or do something else
-                Admin admin = new Admin(seller, movieFileReader); // Assuming you have an AdminHome class
+                Admin admin = new Admin(seller, movieFileReader, userType); // Assuming you have an AdminHome class
                 admin.setVisible(true);
+                this.setVisible(false);
             }
-            this.dispose();    
+            // this.dispose();    
         } 
         else if (confirmButton.getText().equals(command)) 
         {
@@ -285,9 +289,11 @@ public class MovieTicketBooking extends JFrame implements ActionListener, MouseL
                 }
             }
 
-            MovieReceipt r = new MovieReceipt(this, name, phone, selectedDate, selectedTime, seats, selectedQuantity, seller, imagePath, movieName, ticketDetailsList, movieFileReader);
+            MovieReceipt r = new MovieReceipt(this, name, phone, selectedDate, selectedTime, seats, selectedQuantity, seller, imagePath, movieName, ticketDetailsList, movieFileReader, userType);
             r.setVisible(true);
-            this.dispose();
+            // this.dispose();
+            this.setVisible(false);
+            System.out.println( seller);
         } 
         else if (ae.getSource() == timeComboBox) 
         {

@@ -16,3 +16,93 @@ null
 11:00
 2
 
+Animal
+null
+1 NOV, 2024
+11:00
+2, 3
+
+Animal
+null
+1 JAN, 2024
+11:00
+2, 8, 4
+
+Avatar
+null
+1 JAN, 2024
+11:00
+2
+
+Avatar
+null
+1 JAN, 2024
+11:00
+2
+
+Matrix
+null
+1 JAN, 2024
+11:00
+2
+
+Joker
+null
+1 JAN, 2024
+11:00
+2
+
+Animal
+null
+1 JAN, 2024
+11:00
+2
+
+Avatar
+null
+1 JAN, 2024
+11:00
+3
+
+Avatar
+null
+1 JAN, 2024
+11:00
+2
+
+Avatar
+null
+1 JAN, 2024
+11:00
+2
+
+Avengers
+null
+1 JAN, 2024
+11:00
+3
+
+Joker
+null
+1 JAN, 2024
+11:00
+2
+
+Avatar
+null
+1 JAN, 2024
+11:00
+9
+
+Joker
+null
+1 JAN, 2024
+11:00
+2
+
+Matrix
+null
+1 JAN, 2024
+11:00
+2
+

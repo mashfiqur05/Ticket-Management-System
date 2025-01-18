@@ -15,14 +15,20 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
     TicketSellerList seller;
     MovieFileReader movieFileReader;
     TicketDetailsList ticketDetailsList;
+    String userType;
 
-    public Admin(TicketSellerList seller, MovieFileReader movieFileReader) {
+    public Admin(TicketSellerList seller, MovieFileReader movieFileReader, String userType) {
         super("Aiub Cineplex");
         this.setSize(800, 645);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.movieFileReader = movieFileReader;
         this.ticketDetailsList = new TicketDetailsList();
+        this.seller = seller;
+        this.userType = userType;
+
+        System.out.print("Admin: ");
+        System.out.println(seller);
 
         /// color and font
         myColor1 = new Color(206, 185, 224);
@@ -215,23 +221,25 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         if (buyTicketsButton.getText().equals(command)) {
-            Home home = new Home(seller, movieFileReader);
+            System.out.print("Admin action performed : ");
+            System.out.println(seller);
+            HomeForAdmin home = new HomeForAdmin(seller, movieFileReader, userType);
             home.setVisible(true);
             this.setVisible(false);
         } else if (addMoviesButton.getText().equals(command)) {
-            AddMovies addMovies = new AddMovies(seller, movieFileReader);
+            AddMovies addMovies = new AddMovies(seller, movieFileReader, userType);
             addMovies.setVisible(true);
             this.setVisible(false);
         } else if (adduserButton.getText().equals(command)) {
-            Register register = new Register(seller, movieFileReader);
+            Register register = new Register(seller, movieFileReader, userType);
             register.setVisible(true);
             this.setVisible(false);
         } else if (ticketSellersButton.getText().equals(command)){
-            TicketSellerGui ticketSellerGui = new TicketSellerGui(seller, movieFileReader);
+            TicketSellerGui ticketSellerGui = new TicketSellerGui(seller, movieFileReader, userType);
             ticketSellerGui.setVisible(true);
             this.setVisible(false);
         } else if (deleteUserButton.getText().equals(command)){
-            DeletUser deletUser = new DeletUser(seller, movieFileReader);
+            DeletUser deletUser = new DeletUser(seller, movieFileReader, userType);
             deletUser.setVisible(true);
             this.setVisible(false);
             System.out.println("delet button clicked");

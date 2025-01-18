@@ -5,11 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Home extends JFrame implements ActionListener, MouseListener {
+public class HomeForAdmin extends JFrame implements ActionListener, MouseListener {
     JPanel panel;
     JButton[] movieButtons = new JButton[6];
     JLabel[] movieLabels = new JLabel[6];
-    JButton logoutButton;
+    JButton BackButton;
     Font myFont1, myFont2;
     Color myColor1, myColor2;
     TicketSellerList seller;
@@ -17,15 +17,18 @@ public class Home extends JFrame implements ActionListener, MouseListener {
     MovieFileReader movieFileReader;
     String userType;
 
-    public Home(TicketSellerList seller, MovieFileReader movieFileReader, String userType) {
+    public HomeForAdmin(TicketSellerList seller, MovieFileReader movieFileReader, String userType) {
         super("Aiub Cineplex");
         this.setSize(800, 645);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        System.out.print("Home for Admin: ");
+        System.out.println(seller);
+
         this.seller = seller;
-        this.movieFileReader = movieFileReader;
         this.userType = userType;
+        this.movieFileReader = movieFileReader;
         Movie[] movies = movieFileReader.getMovieList(); // Retrieve movies from MovieFileReader
         if (movies == null || movies.length == 0) {
             System.out.println("No movies available.");
@@ -50,16 +53,16 @@ public class Home extends JFrame implements ActionListener, MouseListener {
         panel.add(welcomeLabel);
 
         /// Log out Button
-        logoutButton = new JButton("Logout");
-        logoutButton.setBounds(600, 30, 100, 30);
-        logoutButton.setBackground(Color.decode("#FF6666")); 
-        logoutButton.setForeground(Color.BLACK);
-        logoutButton.setFont (new Font("Arial", Font.BOLD, 14));
-        logoutButton.setBorderPainted(false);
-        logoutButton.addActionListener(this);
-        logoutButton.addMouseListener(this);
-        logoutButton.setOpaque(true);
-        panel.add (logoutButton);
+        BackButton = new JButton("Back");
+        BackButton.setBounds(600, 30, 100, 30);
+        BackButton.setBackground(Color.decode("#FF6666")); 
+        BackButton.setForeground(Color.BLACK);
+        BackButton.setFont (new Font("Arial", Font.BOLD, 14));
+        BackButton.setBorderPainted(false);
+        BackButton.addActionListener(this);
+        BackButton.addMouseListener(this);
+        BackButton.setOpaque(true);
+        panel.add (BackButton);
 
         // Modify the button creation in your for-loop like this
         for (int i = 0; i < movies.length && i < movieButtons.length; i++) {
@@ -96,9 +99,9 @@ public class Home extends JFrame implements ActionListener, MouseListener {
 
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
-        if ("Logout".equals(command)) {
-            Login login = new Login (seller, movieFileReader);
-            login.setVisible(true);
+        if ("Back".equals(command)) {
+            Admin admin = new Admin (seller, movieFileReader, userType);
+            admin.setVisible(true);
             this.setVisible(false);
         }
         else {
@@ -119,15 +122,15 @@ public class Home extends JFrame implements ActionListener, MouseListener {
     }
 
     public void mouseEntered(MouseEvent me) {
-        if (me.getSource() == logoutButton) 
+        if (me.getSource() == BackButton) 
         {
-            logoutButton.setBackground(Color.RED);
+            BackButton.setBackground(Color.RED);
         }
     }
     public void mouseExited(MouseEvent me) {
-        if (me.getSource() == logoutButton) 
+        if (me.getSource() == BackButton) 
         {
-            logoutButton.setBackground(Color.decode("#FF6666"));
+            BackButton.setBackground(Color.decode("#FF6666"));
         }
     }
     public void mouseClicked(MouseEvent me) {}

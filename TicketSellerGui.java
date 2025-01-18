@@ -14,8 +14,9 @@ public class TicketSellerGui extends JFrame implements MouseListener, ActionList
     Color myColor1, myColor2, colourChange;
     TicketSellerList seller;
     MovieFileReader movieFileReader;
+    String userType;
 
-    public TicketSellerGui(TicketSellerList seller, MovieFileReader movieFileReader) {
+    public TicketSellerGui(TicketSellerList seller, MovieFileReader movieFileReader,String userType) {
         super("Aiub Cineplex");
         this.setSize(800, 645);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,6 +26,7 @@ public class TicketSellerGui extends JFrame implements MouseListener, ActionList
         this.seller = seller; // Make sure seller is initialized
         this.seller = new TicketSellerList();
         this.movieFileReader = movieFileReader;
+        this.userType = userType;
 
         // Color and font
         myColor1 = new Color(206, 185, 224);
@@ -192,19 +194,19 @@ public class TicketSellerGui extends JFrame implements MouseListener, ActionList
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         if (buyTicketsButton.getText().equals(command)) {
-            Home home = new Home(seller, movieFileReader);
+            Home home = new Home(seller, movieFileReader, userType);
             home.setVisible(true);
             this.setVisible(false);
         } else if (addMoviesButton.getText().equals(command)) {
-            AddMovies addMovies = new AddMovies(seller, movieFileReader);
+            AddMovies addMovies = new AddMovies(seller, movieFileReader, userType);
             addMovies.setVisible(true);
             this.setVisible(false);
         } else if (adduserButton.getText().equals(command)) {
-            Register register = new Register(seller, movieFileReader);
+            Register register = new Register(seller, movieFileReader, userType);
             register.setVisible(true);
             this.setVisible(false);
         } else if (dashboardButton.getText().equals(command)) {
-            Admin admin = new Admin(seller, movieFileReader);
+            Admin admin = new Admin(seller, movieFileReader, userType);
             admin.setVisible(true);
             this.setVisible(false);
         }

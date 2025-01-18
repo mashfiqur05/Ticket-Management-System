@@ -19,8 +19,9 @@ public class DeletUser extends JFrame implements ActionListener, MouseListener {
     Color myColor1, myColor2;
     TicketSellerList seller;
     MovieFileReader movieFileReader;
+    String userType;
 
-    public DeletUser(TicketSellerList seller, MovieFileReader movieFileReader) {
+    public DeletUser(TicketSellerList seller, MovieFileReader movieFileReader, String userType) {
         super("Delet a User");
         this.seller = seller;
         this.seller = new TicketSellerList();
@@ -28,6 +29,7 @@ public class DeletUser extends JFrame implements ActionListener, MouseListener {
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.userType = userType;
 
         myColor1 = new Color(206, 185, 224);
         myColor2 = Color.decode("#a5d8ff");
@@ -102,7 +104,7 @@ public class DeletUser extends JFrame implements ActionListener, MouseListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            Admin admin = new Admin(seller, movieFileReader);
+            Admin admin = new Admin(seller, movieFileReader, userType);
             admin.setVisible(true);
             this.setVisible(false);
         } else if (e.getSource() == confirmButton) {

@@ -22,14 +22,16 @@ public class AddMovies extends JFrame implements MouseListener, ActionListener {
     TicketSellerList seller;
     MovieFileReader movieFileReader;
     BufferedImage movieImage;
+    String userType;
 
-    public AddMovies(TicketSellerList seller, MovieFileReader movieFileReader) {
+    public AddMovies(TicketSellerList seller, MovieFileReader movieFileReader,String userType) {
         super("Aiub Cineplex");
         this.setSize(800, 650);
         this.movieFileReader = movieFileReader;
         this.movieFileReader = new MovieFileReader();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.userType = userType;
 
         /// color and font
         myColor1 = new Color(206, 185, 224);
@@ -158,19 +160,19 @@ public class AddMovies extends JFrame implements MouseListener, ActionListener {
     /// Action Listener
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == dashboardButton) {
-            Admin admin = new Admin(seller, movieFileReader);
+            Admin admin = new Admin(seller, movieFileReader, userType);
             admin.setVisible(true);
             this.setVisible(false);
         } else if (ae.getSource() == buyTicketsButton) {
-            Home home = new Home(seller, movieFileReader);
+            Home home = new Home(seller, movieFileReader, userType);
             home.setVisible(true);
             this.setVisible(false);
         } else if (ae.getSource() == adduserButton) {
-            Register register = new Register(seller, movieFileReader);
+            Register register = new Register(seller, movieFileReader, userType);
             register.setVisible(true);
             this.setVisible(false);
         } else if (ae.getSource() == ticketSellersButton) {
-            TicketSellerGui ticketSellerGui = new TicketSellerGui(seller, movieFileReader);
+            TicketSellerGui ticketSellerGui = new TicketSellerGui(seller, movieFileReader, userType);
             ticketSellerGui.setVisible(true);
             this.setVisible(false);
         } else if (ae.getSource() == confirmButton) {
@@ -191,7 +193,7 @@ public class AddMovies extends JFrame implements MouseListener, ActionListener {
 
         if (response == JOptionPane.OK_OPTION) {
             // Redirect to dashboard after OK is clicked
-            Admin admin = new Admin(seller, movieFileReader);
+            Admin admin = new Admin(seller, movieFileReader, userType);
             admin.setVisible(true);
             this.setVisible(false);
         }

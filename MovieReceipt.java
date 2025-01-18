@@ -14,10 +14,10 @@ public class MovieReceipt extends JFrame implements ActionListener, MouseListene
     TicketDetailsList ticketDetailsList;
     TicketSellerList seller;
     MovieFileReader movieFileReader;
-    String imagepath, movieName, date, time, seatNo;
+    String imagepath, movieName, date, time, seatNo, userType;
     JFrame previousFrame;
 
-    public MovieReceipt(JFrame previousFrame, String name, String phone, String date, String time, String seatNo, int quantity, TicketSellerList seller, String imagepath, String movieName, TicketDetailsList ticketDetailsList, MovieFileReader movieFileReader) {
+    public MovieReceipt(JFrame previousFrame, String name, String phone, String date, String time, String seatNo, int quantity, TicketSellerList seller, String imagepath, String movieName, TicketDetailsList ticketDetailsList, MovieFileReader movieFileReader, String userType) {
         super("Receipt");
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +29,8 @@ public class MovieReceipt extends JFrame implements ActionListener, MouseListene
         this.time = time;
         this.seatNo = seatNo;
         this.previousFrame = previousFrame; 
+        this.seller = seller;
+        this.userType = userType;
 
         myColor1 = new Color(206, 185, 224);
         myColor2 = Color.decode("#a5d8ff");
@@ -167,12 +169,23 @@ public class MovieReceipt extends JFrame implements ActionListener, MouseListene
                 ticketDetailsList.saveToFile();
             
                 JOptionPane.showMessageDialog(this, "\t \tPayment Successful \n \tThank You!");
-                System.exit(0);
+                System.out.println("Recipt page : ");
+                System.out.println(seller);
+                System.out.println(userType);
+                if (userType == "admin")
+                {
+                    HomeForAdmin home = new HomeForAdmin(seller, movieFileReader, userType);
+                    home.setVisible (true);
+                    this.setVisible(false);
+                }
+                else if (userType == "ticket seller")
+                {
+                    Home home = new Home(seller, movieFileReader, userType);
+                    home.setVisible (true);
+                    this.setVisible(false);
+                }
             }
-            
 
-            JOptionPane.showMessageDialog(this, "\t \tPayment Successful \n \tThank You!");
-            System.exit(0);
         }
     }
 

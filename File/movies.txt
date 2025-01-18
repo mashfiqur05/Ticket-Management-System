@@ -10,6 +10,9 @@ Avengers
 C:/Users/mashf/code/Ticket_management_system/images/Joker.jpg
 Joker
 
+C:\Users\mashf\Pictures\resize_pi
+Super30
+
 C:/Users/mashf/code/Ticket_management_system/images/Matrix.jpg
 Matrix
 

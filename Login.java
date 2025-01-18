@@ -181,12 +181,13 @@ public class Login extends JFrame implements MouseListener, ActionListener{
                     } else {
                         String userType = curAgent.getUserType();
                         if (userType.equals("admin")) {
-                            Admin admin = new Admin(seller, movieFileReader);
+                            Admin admin = new Admin(seller, movieFileReader, "admin");
                             admin.setVisible(true);
                         } else if (userType.equals("ticket seller")) {
-                            Home home = new Home(seller, movieFileReader);
+                            Home home = new Home(seller, movieFileReader, "ticket seller");
                             home.setVisible(true);
                         }
+                        // System.out.println(seller);
                         this.setVisible(false);
                     }
                 }
